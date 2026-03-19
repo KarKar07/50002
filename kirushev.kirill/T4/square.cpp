@@ -1,4 +1,5 @@
 #include "square.h"
+#include <stdexcept>
 
 double Square::getArea() const {
     return sideLength_ * sideLength_;

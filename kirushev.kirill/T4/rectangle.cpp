@@ -1,4 +1,5 @@
 #include "rectangle.h"
+#include <stdexcept>
 
 double Rectangle::getArea() const {
     double width = topRight_.x - bottomLeft_.x;

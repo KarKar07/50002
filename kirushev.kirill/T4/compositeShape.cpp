@@ -1,4 +1,5 @@
 #include <limits>
+#include <stdexcept>
 #include "compositeShape.h"
 
 void CompositeShape::addShape(std::shared_ptr<Shape> shape) {
