@@ -30,7 +30,7 @@ void printShape(const Shape& shape, int indent = 0)
     }
 }
 
-int main() 
+int main()
 {
     std::vector<std::unique_ptr<Shape>> shapes;
     shapes.push_back(std::make_unique<Rectangle>(Point{1, 1}, Point{4, 3}));
