@@ -7,7 +7,7 @@ class Rectangle : public Shape
 
    Point left_;
    Point right_;
-   
+
 //Useful methods
 
    float width() const
@@ -21,11 +21,12 @@ class Rectangle : public Shape
    }
 
    public:
-   
-   Rectangle(const Point& left, const Point& right): 
+
+   Rectangle(const Point& left, const Point& right):
    left_(left),
-   right_(right) 
+   right_(right)
    {}
+
    float getArea() const override;
    Point getCentre() const override;
    void move(const float& movex, const float& movey) override;
