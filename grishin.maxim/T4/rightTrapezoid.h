@@ -1,4 +1,3 @@
-#pragma once
 #ifndef RIGHT_TRAPEZOID_H
 #define RIGHT_TRAPEZOID_H
 

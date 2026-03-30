@@ -1,4 +1,3 @@
-#pragma once
 #ifndef COMPOSITE_SHAPE_H
 #define COMPOSITE_SHAPE_H
 
