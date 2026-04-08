@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include "Structs.h"
 #include <vector>
+#include <iterator>
+#include <limits>
 #include <algorithm>
 
 int main()
