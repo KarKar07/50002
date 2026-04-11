@@ -104,13 +104,18 @@ namespace structs {
         bool hasKey2 = false;
         bool hasKey3 = false;
 
-        is >> DelimiterIO{'('};
+        if (!(is >> DelimiterIO{'('})) {
+            is.setstate(std::ios_base::failbit);
+            return is;
+        }
 
         for (std::size_t i = 0; i < 3; ++ i) {
-            is >> DelimiterIO{':'};
+            if (!(is >> DelimiterIO{':'})) {
+                is.setstate(std::ios_base::failbit);
+                return is;
+            }
 
             std::string label;
-
             if (!(is >> label)) {
                 is.setstate(std::ios_base::failbit);
                 return is;
@@ -131,14 +136,16 @@ namespace structs {
             }
         }
 
-        is >> DelimiterIO{':'} >> DelimiterIO{')'};
+        if (!(is >> DelimiterIO{':'} >> DelimiterIO{')'})) {
+            is.setstate(std::ios_base::failbit);
+            return is;
+        }
 
         if (is && hasKey1 && hasKey2 && hasKey3) {
             dest = std::move(input);
         } else {
             is.setstate(std::ios_base::failbit);
         }
-
         return is;
     }
 
