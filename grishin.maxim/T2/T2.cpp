@@ -14,7 +14,6 @@
 #include <limits>
 #include <algorithm>
 #include <cmath>
-
 namespace nspace
 {
     // 7. DBL SCI SLL LIT
