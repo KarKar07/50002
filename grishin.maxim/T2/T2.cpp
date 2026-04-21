@@ -1,10 +1,4 @@
-﻿// Пример перегрузки ввода/вывода для пользовательского типа Data.
-// Похожим образом можно организовать ввод/вывод в работе 1,
-// но в этом примере имеется ряд упрощений:
-// 1) не поддерживается произвольный порядок полей
-// 2) не поддерживаются строки некорректного формата
-
-#include <iostream>
+﻿#include <iostream>
 #include <sstream>
 #include <string>
 #include <cassert>
@@ -13,12 +7,10 @@
 #include <iomanip>
 #include <limits>
 #include <algorithm>
-
 namespace nspace
 {
     // 7. DBL SCI SLL LIT
     /* Тесты
-    
 (:key1 5123.453424e1:key2 -89ll:key3 "Data":)
 (:key2 10ll:key3 "Hello":key1 1.00e+1:)
 (:key3 "ABC":key1 2.5E+0:key2 0ll:)
@@ -31,7 +23,6 @@ namespace nspace
 key1 1.0e+1:key2 10ll:key3 "OK":key4 123:)
 (:key1 1.0e+1:key3 "Missing":)
 hello world
-    
     */
     struct Data
     {
@@ -155,7 +146,7 @@ namespace nspace
             in.setstate(std::ios_base::failbit);
             return in;
         }
-        // получение разряда числа после точки   
+        // получение разряда числа после точки
         int n = 0;
         int afterDotCopy = afterDot;
         while (afterDotCopy != 0) {
