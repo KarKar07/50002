@@ -17,15 +17,6 @@
 namespace nspace
 {
     // 7. DBL SCI SLL LIT
-
-    //[DBL SCI] 
-    //    Вещественное поле с двойной точностью(double) в научном формате: :keyX 5.45e-2: :keyX 5.45E-2: 
-    //    Мантисса числа должна обязательно содержать точку и иметь хотя бы одну десятичную цифру до и после точки.
-    //    При выводе числа мантисса должна быть меньше 10 и не меньше 1.
-
-    //[SLL LIT] 
-    // Знаковое максимально доступной ёмкости(long long) в формате литерала: :keyX 89ll: :keyX -89LL:
-
     /* Тесты
     
 (:key1 5123.453424e1:key2 -89ll:key3 "Data":)
@@ -357,10 +348,10 @@ namespace nspace
         }
         iofmtguard fmtguard(out);
         out << std::fixed << std::setprecision(2) << std::defaultfloat;
-        out << "(:key1 " << makeScientific(src.key1) << ":key2 " << src.key2 << "ll:key3 \"" << src.key3 << "\":)";
+        out << "(:key1 " << makeScientific(src.key1) << ":key2 " << src.key2 << "ll:key3 \"" << src.key3;
+        out << "\":)";
         return out;
     }
-
     iofmtguard::iofmtguard(std::basic_ios< char >& s) :
         s_(s),
         width_(s.width()),
@@ -368,7 +359,6 @@ namespace nspace
         precision_(s.precision()),
         fmt_(s.flags())
     {}
-
     iofmtguard::~iofmtguard()
     {
         s_.width(width_);
@@ -376,7 +366,6 @@ namespace nspace
         s_.precision(precision_);
         s_.flags(fmt_);
     }
-
     bool comparator(const nspace::Data& a, const nspace::Data& b) {
         if (a.key1 != b.key1) {
             return a.key1 < b.key1;
