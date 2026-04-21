@@ -321,7 +321,7 @@ namespace nspace
             }
         }
         std::stringstream result;
-        result << std::fixed << std::setprecision(2) << (isNegative ? -mantissa : mantissa);
+        result << std::fixed << std::setprecision(1) << (isNegative ? -mantissa : mantissa);
         result << "e";
         if (exponent >= 0) {
             result << "+";
@@ -337,7 +337,7 @@ namespace nspace
             return out;
         }
         iofmtguard fmtguard(out);
-        out << std::fixed << std::setprecision(2) << std::defaultfloat;
+        out << std::fixed << std::setprecision(1) << std::defaultfloat;
         out << "(:key1 " << makeScientific(src.key1) << ":key2 " << src.key2 << "ll:key3 \"" << src.key3;
         out << "\":)";
         return out;
