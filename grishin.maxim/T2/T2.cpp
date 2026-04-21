@@ -48,42 +48,34 @@ hello world
         long long key2;
         std::string key3;
     };
-
     struct DelimiterIO
     {
         char exp;
     };
-
     struct DoubleIO
     {
         double& ref;
     };
-
     struct LongIO
     {
         long long& ref;
     };
-
     struct StringKeyIO
     {
         std::string& ref;
     };
-
     struct KeyIO
     {
         std::string exp;
     };
-
     struct StringLabelIO
     {
         std::string& ref;
     };
-
     struct LabelIO
     {
         std::string exp;
     };
-
     class iofmtguard
     {
     public:
@@ -96,7 +88,6 @@ hello world
         std::streamsize precision_;
         std::basic_ios< char >::fmtflags fmt_;
     };
-
     std::istream& operator>>(std::istream& in, DelimiterIO&& dest);
     std::istream& operator>>(std::istream& in, DoubleIO&& dest);
     std::istream& operator>>(std::istream& in, StringKeyIO&& dest);
@@ -105,10 +96,8 @@ hello world
     std::istream& operator>>(std::istream& in, LabelIO&& dest);
     std::istream& operator>>(std::istream& in, Data& dest);
     std::ostream& operator<<(std::ostream& out, const Data& dest);
-
     bool comparator(const nspace::Data& a, const nspace::Data& b);
 }
-
 int main()
 {
     std::vector<nspace::Data> data;
@@ -129,10 +118,8 @@ int main()
         data.end(),
         std::ostream_iterator<nspace::Data>(std::cout, "\n")
     );
-
     return 0;
 }
-
 namespace nspace
 {
     std::istream& operator>>(std::istream& in, DelimiterIO&& dest)
@@ -150,7 +137,6 @@ namespace nspace
         }
         return in;
     }
-
     std::istream& operator>>(std::istream& in, DoubleIO&& dest) {
         std::istream::sentry sentry(in);
         if (!sentry) {
@@ -178,15 +164,13 @@ namespace nspace
             in.setstate(std::ios_base::failbit);
             return in;
         }
-        // получение разряда числа после точки
-        
+        // получение разряда числа после точки   
         int n = 0;
         int afterDotCopy = afterDot;
         while (afterDotCopy != 0) {
             afterDotCopy /= 10;
             n++;
         }
-
         // обработка
         double mantissa = 0;
         if (beforeDot > 0) {
@@ -194,11 +178,9 @@ namespace nspace
         } else {
             mantissa = -(beforeDot + (afterDot / std::pow(10.0, n)));
         }
-        
         dest.ref = mantissa * std::pow(10.0, exponent);
         return in;
     }
-
     std::istream& operator>>(std::istream& in, LongIO&& dest)
     {
         std::istream::sentry sentry(in);
@@ -221,8 +203,6 @@ namespace nspace
         dest.ref = number;
         return in;
     }
-
-
     std::istream& operator>>(std::istream& in, StringKeyIO&& dest)
     {
         std::istream::sentry sentry(in);
@@ -232,7 +212,6 @@ namespace nspace
         }
         return std::getline(in >> DelimiterIO {'"'}, dest.ref, '"');
     }
-
     std::istream& operator>>(std::istream& in, KeyIO&& dest)
     {
         std::istream::sentry sentry(in);
@@ -248,7 +227,6 @@ namespace nspace
         }
         return in;
     }
-
     std::istream& operator>>(std::istream& in, StringLabelIO&& dest)
     {
         std::istream::sentry sentry(in);
@@ -258,7 +236,6 @@ namespace nspace
         }
         return std::getline(in, dest.ref, ' ');
     }
-
     std::istream& operator>>(std::istream& in, LabelIO&& dest)
     {
         std::istream::sentry sentry(in);
@@ -274,7 +251,6 @@ namespace nspace
         }
         return in;
     }
-
     std::istream& operator>>(std::istream& in, Data& dest)
     {
         std::istream::sentry sentry(in);
@@ -298,19 +274,19 @@ namespace nspace
             for (std::size_t i = 0; i < 3; i++) {
                 std::string key = "";
                 in >> StringLabelIO{ key };
-                if (!flagKey1 && (key == "key1" )) {
+                if (!flagKey1 && (key == "key1")) {
                     if (!(in >> DoubleIO{ input.key1 })) {
                         break;
                     }
                     flagKey1 = true;
                 }
-                else if (!flagKey2 && (key == "key2" )) {
+                else if (!flagKey2 && (key == "key2")) {
                     if (!(in >> LongIO{ input.key2 })) {
                         break;
                     }
                     flagKey2 = true;
                 }
-                else if (!flagKey3 && (key == "key3")){
+                else if (!flagKey3 && (key == "key3")) {
                     if (!(in >> StringKeyIO{ input.key3 })) {
                         break;
                     }
@@ -325,21 +301,17 @@ namespace nspace
                     break;
                 }
                 if (!(in >> DelimiterIO{ ':' })) break;
-
             }
-
             // ending parenthesis
-            if ((in >> DelimiterIO {')'}) && flagKey1 && flagKey2 && flagKey3) {
+            if ((in >> DelimiterIO{ ')' }) && flagKey1 && flagKey2 && flagKey3) {
                 dest = input;
             }
             else {
                 in.setstate(std::ios::failbit);
             }
-
         }
         return in;
     }
-
     std::string makeScientific(double key1) {
         if (key1 == 0.0) {
             return "0.0e+0";
@@ -376,7 +348,6 @@ namespace nspace
         result << exponent;
         return result.str();
     }
-
     std::ostream& operator<<(std::ostream& out, const Data& src)
     {
         std::ostream::sentry sentry(out);
