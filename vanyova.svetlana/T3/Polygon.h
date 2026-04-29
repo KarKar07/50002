@@ -1,5 +1,8 @@
 #ifndef POLYGON_H
 #define POLYGON_H
+#include <vector>
+#include <string>
+#include <iostream>
 struct StrictDelim {
     char exp;
 };

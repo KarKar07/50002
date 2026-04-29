@@ -1,6 +1,9 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 #include "Polygon.h"
+#include <vector>
+#include <string>
+#include <iostream>
 
 bool isOrthogonal(const Point& a, const Point& b, const Point& c);
 bool rightAngle(const Polygon& poly);
