@@ -76,8 +76,7 @@ void area(const std::vector<Polygon>& polygon, std::string name, std::ostream& o
     }
     else if (name == "MEAN") {
         if (polygon.empty()) {
-            out << 0.0 << "\n";
-            return;
+            throw std::invalid_argument("");
         }
         out << std::accumulate(polygon.begin(), polygon.end(), 0.0,
             [](double area, const Polygon& polygon) {
