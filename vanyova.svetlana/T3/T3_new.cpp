@@ -7,6 +7,7 @@
 #include <functional>
 #include <vector>
 #include <fstream>
+#include <limits>
 #include "Polygon.h"
 #include "commands.h"
 
@@ -32,7 +33,7 @@ int main(int count, char** file)
         if (inputf.fail() && !inputf.eof())
         {
             inputf.clear();
-            inputf.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            inputf.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
         }
     }
     std::cin.clear();
@@ -72,7 +73,7 @@ int main(int count, char** file)
         catch (...) {
             std::cout << "<INVALID COMMAND>" << std::endl;
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
         }
     }
 }
